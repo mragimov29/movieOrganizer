@@ -4,12 +4,26 @@ import "./SearchBox.css";
 function SearchBox() {
   const [searchLine, setSearchLine] = useState("");
 
+  const getData = async (title, apiKey) => {
+    let response = await fetch(
+      `https://www.omdbapi.com/?s=${title}&apikey=${apiKey}`
+    );
+    let data = response.json();
+    return data;
+  };
+
   const searchLineChangeHandler = (e) => {
     setSearchLine(e.target.value);
   };
 
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
+    const apiKey = '40acc25e';
+    getData(searchLine, apiKey)
+    .then(res=> {
+      console.log(res)
+    })
+    .catch(err => alert(err));
   };
 
   return (
