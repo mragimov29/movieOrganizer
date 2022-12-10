@@ -40,6 +40,8 @@ function Favorites({ favorites, removeFromFavorites, createList }) {
       movies: favorites,
     };
 
+    document.querySelectorAll('.movie-item__add-button').forEach(el => {el.disabled = true});
+
     createList(list);
   };
 
