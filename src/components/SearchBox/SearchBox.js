@@ -7,7 +7,7 @@ const mapDispatchToProps = (dispatch) => ({
   addToList: (data) => dispatch(addToList(data)),
 });
 
-function SearchBox({addToList}) {
+function SearchBox({ addToList }) {
   const [searchLine, setSearchLine] = useState("");
   const getData = async (title, apiKey) => {
     let response = await fetch(
@@ -23,12 +23,12 @@ function SearchBox({addToList}) {
 
   const searchBoxSubmitHandler = (e) => {
     e.preventDefault();
-    const apiKey = '40acc25e';
+    const apiKey = "40acc25e";
     getData(searchLine, apiKey)
-    .then(res=> {
-      addToList(res);
-    })
-    .catch(err => alert(err));
+      .then((res) => {
+        addToList(res);
+      })
+      .catch((err) => alert(err));
   };
 
   return (

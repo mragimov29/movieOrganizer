@@ -10,7 +10,6 @@ const mapStateToProps = (state) => {
 };
 
 function Movies(props) {
-
   return (
     <ul className="movies">
       {props.movies.map((movie) => (

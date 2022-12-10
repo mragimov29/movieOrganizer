@@ -7,15 +7,16 @@ import "./Favorites.css";
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,
+    list: state.list,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   removeFromFavorites: (id) => dispatch(removeFromFavorites(id)),
-  createList: (list) => createList(list),
+  createList: (list) => dispatch(createList(list)),
 });
 
-function Favorites({ favorites, removeFromFavorites }) {
+function Favorites({ favorites, removeFromFavorites, createList, list }) {
   const [title, setTitle] = useState("");
 
   const titleChangeHandler = (e) => {
@@ -30,8 +31,9 @@ function Favorites({ favorites, removeFromFavorites }) {
       .forEach((item) => {
         item.remove();
       });
+
     document.querySelector(".favorites__save").remove();
-    document.querySelector(".nav-link").textContent = 'Перейти к списку';
+    document.querySelector(".nav-link").textContent = "Перейти к списку";
   };
 
   return (
@@ -45,9 +47,15 @@ function Favorites({ favorites, removeFromFavorites }) {
       <ul className="favorites__list">
         {favorites.map((item) => {
           return (
-            <li key={item.id}>
+            <li key={item.imdbId}>
               {item.Title} ({item.Year})
-              <button onClick={createListHandler}>X</button>
+              <button
+                onClick={() => {
+                  removeFromFavorites(item.imdbId);
+                }}
+              >
+                X
+              </button>
             </li>
           );
         })}
@@ -56,12 +64,14 @@ function Favorites({ favorites, removeFromFavorites }) {
         type="button"
         className="favorites__save"
         disabled={title === "" ? true : false}
-        onClick={createListHandler}
+        onClick={() => {
+          createList(favorites);
+          createListHandler();
+        }}
       >
         Сохранить список
       </button>
-      <Link className="nav-link" to="/list">
-      </Link>
+      <Link className="nav-link" to="/list"></Link>
     </div>
   );
 }

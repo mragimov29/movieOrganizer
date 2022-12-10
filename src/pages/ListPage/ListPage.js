@@ -1,18 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import "./ListPage.css";
 
-export default function ListPage() {
-  const [movies, setMovies] = useState([
-    { title: "The Godfather", year: 1972, imdbID: "tt0068646" },
-  ]);
+const mapStateToProps = (state) => {
+  return {
+    movies: state.list,
+  };
+};
 
-  useEffect(() => {
-    const id = this.props.match.params;
-    console.log(id);
-    // TODO: запрос к сервер на получение списка
-    // TODO: запросы к серверу по всем imdbID
-  });
-
+function ListPage({ movies }) {
   return (
     <div className="list-page">
       <h1 className="list-page__title">Мой список</h1>
@@ -20,8 +16,11 @@ export default function ListPage() {
         {movies.map((item) => {
           return (
             <li key={item.imdbID}>
-              <a href="https://www.imdb.com/title/tt0068646/" target="_blank">
-                {item.title} ({item.year})
+              <a
+                href={`https://www.imdb.com/title/${item.imdbID}/`}
+                target="_blank"
+              >
+                {item.Title} ({item.Year})
               </a>
             </li>
           );
@@ -31,3 +30,4 @@ export default function ListPage() {
   );
 }
 
+export default connect(mapStateToProps)(ListPage);

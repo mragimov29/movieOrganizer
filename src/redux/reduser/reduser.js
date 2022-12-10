@@ -1,7 +1,7 @@
 const initialState = {
   favorites: [],
   movies: [],
-  list: []
+  list: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
       );
       let index = state.favorites.indexOf(find);
       favorites.splice(index, 1);
-      
+
       return {
         ...state,
         favorites,
@@ -37,6 +37,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         movies,
+      };
+    case "CREATE_LIST":
+      let list = action.payload.list;
+      console.log(action.payload.list);
+
+      return {
+        ...state,
+        list,
       };
     default:
       return state;
