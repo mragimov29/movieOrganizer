@@ -4,18 +4,19 @@ import "./ListPage.css";
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.list,
+    list: state.list,
   };
 };
 
-function ListPage({ movies }) {
+function ListPage({ list }) {
+  console.log(list);
   return (
     <div className="list-page">
-      <h1 className="list-page__title">Мой список</h1>
+      <h1 className="list-page__title">{list.title}</h1>
       <ul>
-        {movies.map((item) => {
+        {list.movies.map((item) => {
           return (
-            <li key={item.imdbID}>
+            <li key={item.id}>
               <a
                 href={`https://www.imdb.com/title/${item.imdbID}/`}
                 target="_blank"

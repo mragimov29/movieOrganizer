@@ -7,7 +7,6 @@ import "./Favorites.css";
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,
-    list: state.list,
   };
 };
 
@@ -16,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
   createList: (list) => dispatch(createList(list)),
 });
 
-function Favorites({ favorites, removeFromFavorites, createList, list }) {
+function Favorites({ favorites, removeFromFavorites, createList }) {
   const [title, setTitle] = useState("");
 
   const titleChangeHandler = (e) => {
@@ -34,6 +33,15 @@ function Favorites({ favorites, removeFromFavorites, createList, list }) {
 
     document.querySelector(".favorites__save").remove();
     document.querySelector(".nav-link").textContent = "Перейти к списку";
+    
+    let list = {
+      id: "d2514e41-9349-446e-9cee-a8fe25a1332c",
+      title: title,
+      movies: favorites,
+    }
+
+
+    createList(list);
   };
 
   return (
@@ -47,11 +55,11 @@ function Favorites({ favorites, removeFromFavorites, createList, list }) {
       <ul className="favorites__list">
         {favorites.map((item) => {
           return (
-            <li key={item.imdbId}>
+            <li key={item.id}>
               {item.Title} ({item.Year})
               <button
                 onClick={() => {
-                  removeFromFavorites(item.imdbId);
+                  removeFromFavorites(item.imdbID);
                 }}
               >
                 X
@@ -65,7 +73,6 @@ function Favorites({ favorites, removeFromFavorites, createList, list }) {
         className="favorites__save"
         disabled={title === "" ? true : false}
         onClick={() => {
-          createList(favorites);
           createListHandler();
         }}
       >

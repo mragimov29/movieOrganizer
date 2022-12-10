@@ -24,6 +24,7 @@ export default function reducer(state = initialState, action) {
       let find = state.favorites.find(
         (item) => item.imdbID === action.payload.id
       );
+      
       let index = state.favorites.indexOf(find);
       favorites.splice(index, 1);
 
