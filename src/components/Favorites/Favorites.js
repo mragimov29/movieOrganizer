@@ -1,17 +1,21 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import "./Favorites.css";
 
-export default function Favorites() {
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.favorites,
+  };
+};
+
+function Favorites(props) {
   const [title, setTitle] = useState("Новый список");
-  const [movies, setMovies] = useState([
-    { imdbID: "tt0068646", title: "The Godfather", year: 1972 },
-  ]);
 
   return (
     <div className="favorites">
       <input value="Новый список" className="favorites__name" />
       <ul className="favorites__list">
-        {movies.map((item) => {
+        {props.favorites.map((item) => {
           return (
             <li key={item.id}>
               {item.title} ({item.year})
@@ -25,3 +29,5 @@ export default function Favorites() {
     </div>
   );
 }
+
+export default connect(mapStateToProps)(Favorites);

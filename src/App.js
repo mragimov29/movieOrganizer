@@ -5,15 +5,19 @@ import ListPage from "./pages/ListPage/ListPage";
 
 import "./reset.css";
 import "./common.css";
+import { Provider } from "react-redux";
+import store from "./redux/reduser/store";
 
 export default function App() {
   return (
-    <div className="app">
-      <MainPage />
-      {/* <Routes>
+    <Provider store={store}>
+      <div className="app">
+        <MainPage />
+        {/* <Routes>
         <Route path="/" exact component={MainPage} />
         <Route path="/list/:id" exact component={ListPage} />
       </Routes> */}
-    </div>
+      </div>
+    </Provider>
   );
 }
