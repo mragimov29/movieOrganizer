@@ -24,3 +24,12 @@ export function addToList(data) {
     },
   };
 }
+
+export function createList(list) {
+  return {
+    type: "CREATE_LIST",
+    payload: {
+      list: list,
+    },
+  };
+}

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { addToFavorites } from "../../redux/actions/actions";
 import { connect } from "react-redux";
 import "./MovieItem.css";
@@ -7,7 +7,15 @@ const mapDispatchToProps = (dispatch) => ({
   addToFavorites: (id) => dispatch(addToFavorites(id))
 });
 
-function MovieItem({ Title, Year, Poster, imdbID, addToFavorites }) { 
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.favorites,
+  };
+};
+
+function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) { 
+  let [dis, setDis] = useState(false)
+
   return (
     <article className="movie-item">
       <img className="movie-item__poster" src={Poster} alt={Title} />
@@ -19,6 +27,7 @@ function MovieItem({ Title, Year, Poster, imdbID, addToFavorites }) {
           type="button"
           className="movie-item__add-button"
           onClick={() => {addToFavorites(imdbID)}}
+          disabled={dis}
         >
           Добавить в список
         </button>
@@ -27,4 +36,4 @@ function MovieItem({ Title, Year, Poster, imdbID, addToFavorites }) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(MovieItem);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieItem);

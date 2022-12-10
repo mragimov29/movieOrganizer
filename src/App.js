@@ -12,11 +12,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <div className="app">
-        <MainPage />
-        {/* <Routes>
-        <Route path="/" exact component={MainPage} />
-        <Route path="/list/:id" exact component={ListPage} />
-      </Routes> */}
+        <Routes>
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/list" element={<ListPage />}></Route>
+      </Routes>
       </div>
     </Provider>
   );
