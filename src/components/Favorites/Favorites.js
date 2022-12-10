@@ -8,14 +8,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-function Favorites(props) {
+function Favorites({favorites}) {
   const [title, setTitle] = useState("Новый список");
 
   return (
     <div className="favorites">
-      <input value="Новый список" className="favorites__name" />
+      <input value={title} className="favorites__name" />
       <ul className="favorites__list">
-        {props.favorites.map((item) => {
+        {favorites.map((item) => {
           return (
             <li key={item.id}>
               {item.title} ({item.year})
