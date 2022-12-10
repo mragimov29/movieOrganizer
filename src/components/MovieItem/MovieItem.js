@@ -7,24 +7,18 @@ const mapDispatchToProps = (dispatch) => ({
   addToFavorites: (id) => dispatch(addToFavorites(id))
 });
 
-function MovieItem({ title, year, poster, imdbID, addToFavorites }) {
-  const [dis, setDisabled] = useState(false)
-  const X = () => {
-    setDisabled(true);
-  }
-
+function MovieItem({ Title, Year, Poster, imdbID, addToFavorites }) { 
   return (
     <article className="movie-item">
-      <img className="movie-item__poster" src={poster} alt={title} />
+      <img className="movie-item__poster" src={Poster} alt={Title} />
       <div className="movie-item__info">
         <h3 className="movie-item__title">
-          {title}&nbsp;({year})
+          {Title}&nbsp;({Year})
         </h3>
         <button
           type="button"
           className="movie-item__add-button"
-          onClick={() => {addToFavorites(imdbID); X()}}
-          disabled={dis}
+          onClick={() => {addToFavorites(imdbID)}}
         >
           Добавить в список
         </button>

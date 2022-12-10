@@ -14,16 +14,16 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 function Favorites({ favorites, removeFromFavorites }) {
-  const [title, setTitle] = useState("Новый список");
+  const [title, setTitle] = useState("");
 
   return (
     <div className="favorites">
-      <input value={title} className="favorites__name" />
+      <input placeholder="Новый список" value={title} className="favorites__name" />
       <ul className="favorites__list">
         {favorites.map((item) => {
           return (
             <li key={item.id}>
-              {item.title} ({item.year})
+              {item.Title} ({item.Year})
               <button onClick={() => removeFromFavorites(item.imdbID)}>X</button>
             </li>
           );

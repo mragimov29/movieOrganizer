@@ -15,3 +15,12 @@ export function removeFromFavorites(id) {
     },
   };
 }
+
+export function addToList(data) {
+  return {
+    type: "ADD_TO_LIST",
+    payload: {
+      data: data,
+    },
+  };
+}

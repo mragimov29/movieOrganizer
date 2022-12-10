@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import { addToList } from "../../redux/actions/actions";
+import { connect } from "react-redux";
 import "./SearchBox.css";
 
-function SearchBox() {
-  const [searchLine, setSearchLine] = useState("");
+const mapDispatchToProps = (dispatch) => ({
+  addToList: (data) => dispatch(addToList(data)),
+});
 
+function SearchBox({addToList}) {
+  const [searchLine, setSearchLine] = useState("");
   const getData = async (title, apiKey) => {
     let response = await fetch(
       `https://www.omdbapi.com/?s=${title}&apikey=${apiKey}`
@@ -21,7 +26,7 @@ function SearchBox() {
     const apiKey = '40acc25e';
     getData(searchLine, apiKey)
     .then(res=> {
-      console.log(res)
+      addToList(res);
     })
     .catch(err => alert(err));
   };
@@ -51,4 +56,4 @@ function SearchBox() {
   );
 }
 
-export default SearchBox;
+export default connect(null, mapDispatchToProps)(SearchBox);
