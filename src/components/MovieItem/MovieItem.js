@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import "./MovieItem.css";
 
 const mapDispatchToProps = (dispatch) => ({
-  addToFavorites: (id) => dispatch(addToFavorites(id))
+  addToFavorites: (id) => dispatch(addToFavorites(id)),
 });
 
 const mapStateToProps = (state) => {
@@ -13,8 +13,20 @@ const mapStateToProps = (state) => {
   };
 };
 
-function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) { 
-  let [dis, setDis] = useState(false)
+function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) {
+  let [dis, setDis] = useState(false);
+
+  useEffect(() => {
+    let button = document.querySelectorAll(".fav_button");
+    if (button != null) {
+      button.forEach(el => {
+        el.addEventListener("click", (e) => {
+            if(e.target.previousSibling.innerText.split(' (')[0] === Title) 
+              return setDis(false);
+        });
+      })
+    }
+  });
 
   return (
     <article className="movie-item">
@@ -26,7 +38,10 @@ function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) {
         <button
           type="button"
           className="movie-item__add-button"
-          onClick={() => {addToFavorites(imdbID)}}
+          onClick={() => {
+            addToFavorites(imdbID);
+            setDis(true);
+          }}
           disabled={dis}
         >
           Добавить в список

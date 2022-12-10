@@ -33,13 +33,12 @@ function Favorites({ favorites, removeFromFavorites, createList }) {
 
     document.querySelector(".favorites__save").remove();
     document.querySelector(".nav-link").textContent = "Перейти к списку";
-    
+
     let list = {
       id: "d2514e41-9349-446e-9cee-a8fe25a1332c",
       title: title,
       movies: favorites,
-    }
-
+    };
 
     createList(list);
   };
@@ -56,8 +55,9 @@ function Favorites({ favorites, removeFromFavorites, createList }) {
         {favorites.map((item) => {
           return (
             <li key={item.id}>
-              {item.Title} ({item.Year})
+              <p>{item.Title} ({item.Year})</p>
               <button
+                className="fav_button"
                 onClick={() => {
                   removeFromFavorites(item.imdbID);
                 }}
