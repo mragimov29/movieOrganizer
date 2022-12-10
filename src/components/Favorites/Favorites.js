@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { removeFromFavorites } from "../../redux/actions/actions";
 import "./Favorites.css";
 
 const mapStateToProps = (state) => {
@@ -8,7 +9,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-function Favorites({favorites}) {
+const mapDispatchToProps = (dispatch) => ({
+  removeFromFavorites: (id) => dispatch(removeFromFavorites(id)),
+});
+
+function Favorites({ favorites, removeFromFavorites }) {
   const [title, setTitle] = useState("Новый список");
 
   return (
@@ -19,7 +24,7 @@ function Favorites({favorites}) {
           return (
             <li key={item.id}>
               {item.title} ({item.year})
-              <button>X</button>
+              <button onClick={() => removeFromFavorites(item.imdbID)}>X</button>
             </li>
           );
         })}
@@ -31,4 +36,4 @@ function Favorites({favorites}) {
   );
 }
 
-export default connect(mapStateToProps)(Favorites);
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites);

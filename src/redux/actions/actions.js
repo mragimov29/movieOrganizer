@@ -6,3 +6,12 @@ export function addToFavorites(id) {
     },
   };
 }
+
+export function removeFromFavorites(id) {
+  return {
+    type: "REMOVE_FROM_FAVORITES",
+    payload: {
+      id: id,
+    },
+  };
+}
