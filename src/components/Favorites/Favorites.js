@@ -19,6 +19,7 @@ function Favorites({favorites}) {
           return (
             <li key={item.id}>
               {item.title} ({item.year})
+              <button>X</button>
             </li>
           );
         })}

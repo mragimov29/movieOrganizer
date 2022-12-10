@@ -31,3 +31,9 @@
     opacity: 0.9;
     transition: all 0.2s linear;
 }
+
+.favorites__list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
