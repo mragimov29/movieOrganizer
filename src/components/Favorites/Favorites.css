@@ -2,6 +2,7 @@
     box-sizing: border-box;
     border: 1px solid rgba(0, 8, 7);
     padding: 30px 20px;
+    margin-right: 15px;
 }
 
 .favorites__name {
@@ -41,4 +42,8 @@
 .favorites__save:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+@media screen and (min-width: 610px) {
+    
 }

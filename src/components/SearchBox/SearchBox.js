@@ -26,7 +26,9 @@ function SearchBox({ addToList }) {
     const apiKey = "40acc25e";
     getData(searchLine, apiKey)
       .then((res) => {
-        addToList(res);
+        if(res.Error === "Movie not found!")
+          alert(res.Error);
+        else addToList(res);    
       })
       .catch((err) => alert(err));
   };
