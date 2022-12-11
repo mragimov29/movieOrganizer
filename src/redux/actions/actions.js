@@ -33,3 +33,12 @@ export function createList(list) {
     },
   };
 }
+
+export function setDisabled(bool) {
+  return {
+    type: "DISABLED",
+    payload: {
+      bool: bool,
+    },
+  };
+}

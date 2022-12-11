@@ -10,13 +10,17 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,
+    disabled: state.disabled,
   };
 };
 
-function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) {
+function MovieItem({ disabled, Title, Year, Poster, imdbID, addToFavorites, favorites }) {
   let [dis, setDis] = useState(false);
 
   useEffect(() => {
+    if(disabled)
+      setDis(true)
+
     let button = document.querySelectorAll(".fav_button");
     if (button != null) {
       button.forEach(el => {

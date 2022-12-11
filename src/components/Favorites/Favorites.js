@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { createList, removeFromFavorites } from "../../redux/actions/actions";
+import { Link, useAsyncError } from "react-router-dom";
+import { createList, removeFromFavorites, setDisabled } from "../../redux/actions/actions";
 import "./Favorites.css";
 
 const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,
+    disabled: state.disabled,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   removeFromFavorites: (id) => dispatch(removeFromFavorites(id)),
   createList: (list) => dispatch(createList(list)),
+  setDisabled: (bool) => dispatch(setDisabled(bool))
 });
 
-function Favorites({ favorites, removeFromFavorites, createList }) {
+function Favorites({ favorites, disabled, removeFromFavorites, createList, setDisabled }) {
   const [title, setTitle] = useState("");
 
   const titleChangeHandler = (e) => {
@@ -40,8 +42,7 @@ function Favorites({ favorites, removeFromFavorites, createList }) {
       movies: favorites,
     };
 
-    document.querySelectorAll('.movie-item__add-button').forEach(el => {el.disabled = true});
-
+    setDisabled(true);
     createList(list);
   };
 
@@ -56,7 +57,7 @@ function Favorites({ favorites, removeFromFavorites, createList }) {
       <ul className="favorites__list">
         {favorites.map((item) => {
           return (
-            <li key={item.id}>
+            <li key={item.imdbID}>
               <p>{item.Title} ({item.Year})</p>
               <button
                 className="fav_button"

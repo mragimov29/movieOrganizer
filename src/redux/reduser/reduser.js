@@ -2,6 +2,7 @@ const initialState = {
   favorites: [],
   movies: [],
   list: [],
+  disabled: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,7 +25,7 @@ export default function reducer(state = initialState, action) {
       let find = state.favorites.find(
         (item) => item.imdbID === action.payload.id
       );
-      
+
       let index = state.favorites.indexOf(find);
       favorites.splice(index, 1);
 
@@ -41,11 +42,17 @@ export default function reducer(state = initialState, action) {
       };
     case "CREATE_LIST":
       let list = action.payload.list;
-      console.log(action.payload.list);
 
       return {
         ...state,
         list,
+      };
+    case "DISABLED":
+      let disabled = action.payload.bool;
+
+      return {
+        ...state,
+        disabled,
       };
     default:
       return state;
