@@ -20,6 +20,7 @@ function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) {
     let button = document.querySelectorAll(".fav_button");
     if (button != null) {
       button.forEach(el => {
+        if(el.previousSibling.innerText.split(' (')[0] === Title) setDis(true); 
         el.addEventListener("click", (e) => {
             if(e.target.previousSibling.innerText.split(' (')[0] === Title) 
               return setDis(false);
@@ -40,7 +41,6 @@ function MovieItem({ Title, Year, Poster, imdbID, addToFavorites, favorites }) {
           className="movie-item__add-button"
           onClick={() => {
             addToFavorites(imdbID);
-            setDis(true);
           }}
           disabled={dis}
         >
