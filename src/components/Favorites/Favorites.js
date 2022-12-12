@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createId, removeFromFavorites, setDisabled } from "../../redux/actions/actions";
+import {
+  createId,
+  removeFromFavorites,
+  setDisabled,
+} from "../../redux/actions/actions";
 import "./Favorites.css";
 
 const mapStateToProps = (state) => {
@@ -15,7 +19,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   removeFromFavorites: (id) => dispatch(removeFromFavorites(id)),
   createId: (id) => dispatch(createId(id)),
-  setDisabled: (bool) => dispatch(setDisabled(bool))
+  setDisabled: (bool) => dispatch(setDisabled(bool)),
 });
 
 function Favorites({ favorites, id, removeFromFavorites, createId }) {
@@ -26,17 +30,6 @@ function Favorites({ favorites, id, removeFromFavorites, createId }) {
   };
 
   const createListHandler = () => {
-    document.querySelector(".favorites__name").readOnly = true;
-    document
-      .querySelector(".favorites__list")
-      .querySelectorAll("button")
-      .forEach((item) => {
-        item.remove();
-      });
-
-    document.querySelector(".favorites__save").remove();
-    document.querySelector(".nav-link").textContent = "Перейти к списку";
-
     let list = {
       title: title,
       movies: favorites,
@@ -51,8 +44,19 @@ function Favorites({ favorites, id, removeFromFavorites, createId }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        createId(data.id); 
+        createId(data.id);
       });
+
+    document.querySelector(".favorites__name").readOnly = true;
+    document
+      .querySelector(".favorites__list")
+      .querySelectorAll("button")
+      .forEach((item) => {
+        item.remove();
+      });
+
+    document.querySelector(".favorites__save").remove();
+    document.querySelector(".nav-link").textContent = "Перейти к списку";
   };
 
   return (
@@ -67,7 +71,9 @@ function Favorites({ favorites, id, removeFromFavorites, createId }) {
         {favorites.map((item) => {
           return (
             <li key={item.imdbID}>
-              <p>{item.Title} ({item.Year})</p>
+              <p>
+                {item.Title} ({item.Year})
+              </p>
               <button
                 className="fav_button"
                 onClick={() => {
@@ -83,7 +89,7 @@ function Favorites({ favorites, id, removeFromFavorites, createId }) {
       <button
         type="button"
         className="favorites__save"
-        disabled={title !== "" && (favorites.length >= 1) ? false : true }
+        disabled={title !== "" && favorites.length >= 1 ? false : true}
         onClick={() => {
           createListHandler();
         }}
