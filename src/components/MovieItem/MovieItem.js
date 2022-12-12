@@ -14,43 +14,50 @@ const mapStateToProps = (state) => {
   };
 };
 
-function MovieItem({ disabled, Title, Year, Poster, imdbID, addToFavorites, favorites }) {
+function MovieItem({
+  disabled,
+  Title,
+  Year,
+  Poster,
+  imdbID,
+  addToFavorites,
+  favorites,
+}) {
   let [dis, setDis] = useState(false);
 
   useEffect(() => {
-    if(disabled)
-      setDis(true)
+    if (disabled) setDis(true);
 
     let button = document.querySelectorAll(".fav_button");
     if (button != null) {
-      button.forEach(el => {
-        if(el.previousSibling.innerText.split(' (')[0] === Title) setDis(true); 
+      button.forEach((el) => {
+        if (el.previousSibling.innerText.split(" (")[0] === Title) setDis(true);
         el.addEventListener("click", (e) => {
-            if(e.target.previousSibling.innerText.split(' (')[0] === Title) 
-              return setDis(false);
+          if (e.target.previousSibling.innerText.split(" (")[0] === Title)
+            return setDis(false);
         });
-      })
+      });
     }
   });
 
   return (
     <article className="movie-item">
-      <img className="movie-item__poster" src={Poster} alt={Title} />
-      <div className="movie-item__info">
-        <h3 className="movie-item__title">
-          {Title}&nbsp;({Year})
-        </h3>
-        <button
-          type="button"
-          className="movie-item__add-button"
-          onClick={() => {
-            addToFavorites(imdbID);
-          }}
-          disabled={dis}
-        >
-          Добавить в список
-        </button>
-      </div>
+        <img className="movie-item__poster" src={Poster} alt={Title} />
+        <div className="movie-item__info">
+          <h3 className="movie-item__title">
+            {Title}&nbsp;({Year})
+          </h3>
+          <button
+            type="button"
+            className="movie-item__add-button"
+            onClick={() => {
+              addToFavorites(imdbID);
+            }}
+            disabled={dis}
+          >
+            Добавить в список
+          </button>
+        </div>
     </article>
   );
 }

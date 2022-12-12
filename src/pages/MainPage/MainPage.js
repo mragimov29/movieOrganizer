@@ -18,7 +18,7 @@ export default function MainPage() {
             <div className="main-page__favorites">
               <Favorites />
             </div>
-            <div className0="main-page__movies">
+            <div className="main-page__movies">
               <Movies />
             </div>
           </div>
