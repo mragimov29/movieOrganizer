@@ -25,11 +25,11 @@ export function addToList(data) {
   };
 }
 
-export function createList(list) {
+export function createId(id) {
   return {
-    type: "CREATE_LIST",
+    type: "CREATE_ID",
     payload: {
-      list: list,
+      id: id,
     },
   };
 }

@@ -2,6 +2,7 @@ const initialState = {
   favorites: [],
   movies: [],
   list: [],
+  id: "",
   disabled: false,
 };
 
@@ -40,13 +41,13 @@ export default function reducer(state = initialState, action) {
         ...state,
         movies,
       };
-    case "CREATE_LIST":
-      let list = action.payload.list;
+    case "CREATE_ID":
+      let id = action.payload.id;
 
       return {
         ...state,
-        list,
-      };
+        id,
+      }
     case "DISABLED":
       let disabled = action.payload.bool;
 

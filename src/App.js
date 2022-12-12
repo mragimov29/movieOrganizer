@@ -14,7 +14,7 @@ export default function App() {
       <div className="app">
         <Routes>
         <Route path="/" element={<MainPage />}></Route>
-        <Route path="/list" element={<ListPage />}></Route>
+        <Route path="/:id" element={<ListPage />}></Route>
       </Routes>
       </div>
     </Provider>

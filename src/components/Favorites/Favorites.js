@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { createList, removeFromFavorites, setDisabled } from "../../redux/actions/actions";
+import { createId, removeFromFavorites, setDisabled } from "../../redux/actions/actions";
 import "./Favorites.css";
 
 const mapStateToProps = (state) => {
@@ -13,11 +13,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   removeFromFavorites: (id) => dispatch(removeFromFavorites(id)),
-  createList: (list) => dispatch(createList(list)),
+  createId: (id) => dispatch(createId(id)),
   setDisabled: (bool) => dispatch(setDisabled(bool))
 });
 
-function Favorites({ favorites, disabled, removeFromFavorites, createList, setDisabled }) {
+function Favorites({ favorites, disabled, removeFromFavorites, createId, setDisabled }) {
   const [title, setTitle] = useState("");
 
   const titleChangeHandler = (e) => {
@@ -37,12 +37,21 @@ function Favorites({ favorites, disabled, removeFromFavorites, createList, setDi
     document.querySelector(".nav-link").textContent = "Перейти к списку";
 
     let list = {
-      id: "d2514e41-9349-446e-9cee-a8fe25a1332c",
       title: title,
       movies: favorites,
     };
 
-    createList(list);
+    fetch("https://acb-api.algoritmika.org/api/movies/list", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(list),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        createId(data.id); 
+      });
   };
 
   return (
