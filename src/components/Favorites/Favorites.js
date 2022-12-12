@@ -8,6 +8,7 @@ const mapStateToProps = (state) => {
   return {
     favorites: state.favorites,
     disabled: state.disabled,
+    id: state.id,
   };
 };
 
@@ -17,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   setDisabled: (bool) => dispatch(setDisabled(bool))
 });
 
-function Favorites({ favorites, disabled, removeFromFavorites, createId, setDisabled }) {
+function Favorites({ favorites, id, removeFromFavorites, createId }) {
   const [title, setTitle] = useState("");
 
   const titleChangeHandler = (e) => {
@@ -89,7 +90,7 @@ function Favorites({ favorites, disabled, removeFromFavorites, createId, setDisa
       >
         Сохранить список
       </button>
-      <Link className="nav-link" to="/list"></Link>
+      <Link className="nav-link" to={`/${id}`}></Link>
     </div>
   );
 }
