@@ -42,7 +42,6 @@ function Favorites({ favorites, disabled, removeFromFavorites, createList, setDi
       movies: favorites,
     };
 
-    setDisabled(true);
     createList(list);
   };
 
@@ -74,7 +73,7 @@ function Favorites({ favorites, disabled, removeFromFavorites, createList, setDi
       <button
         type="button"
         className="favorites__save"
-        disabled={title === "" ? true : false}
+        disabled={title !== "" && (favorites.length >= 1) ? false : true }
         onClick={() => {
           createListHandler();
         }}
