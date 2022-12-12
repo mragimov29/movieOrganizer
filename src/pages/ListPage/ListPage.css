@@ -13,7 +13,7 @@
 
 @media screen and (max-width: 650px) {
     .list-page {
-        width: 200px;
+        width: 70%;
         margin-left: 15vw;
     }
 }
