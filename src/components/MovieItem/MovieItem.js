@@ -55,7 +55,7 @@ function MovieItem({
             }}
             disabled={dis}
           >
-            Добавить в список
+            {dis ? "Добавлено" : "Добавить в список"}
           </button>
         </div>
     </article>
