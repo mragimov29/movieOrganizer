@@ -10,3 +10,10 @@
 .list-page ul li {
     font-size: 18px;
 }
+
+@media screen and (max-width: 650px) {
+    .list-page {
+        width: 200px;
+        margin-left: 15vw;
+    }
+}
