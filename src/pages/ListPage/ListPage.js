@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./ListPage.css";
 
@@ -9,7 +9,6 @@ const mapStateToProps = (state) => {
 };
 
 function ListPage({ list }) {
-  console.log(list);
   return (
     <div className="list-page">
       <h1 className="list-page__title">{list.title}</h1>

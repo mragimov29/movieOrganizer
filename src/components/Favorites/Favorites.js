@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link, useAsyncError } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { createList, removeFromFavorites, setDisabled } from "../../redux/actions/actions";
 import "./Favorites.css";
 

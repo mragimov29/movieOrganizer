@@ -44,6 +44,5 @@
     cursor: not-allowed;
 }
 
-@media screen and (min-width: 610px) {
-    
+@media screen and (max-width: 735px) {
 }

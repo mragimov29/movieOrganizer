@@ -7,7 +7,7 @@
 .main-page__main-section {
     padding-left: 40px;
     box-sizing: border-box;
-    width: 60%;
+    width: 100%;
 }
 
 .main-page__search-box {
@@ -16,4 +16,26 @@
 
 .main-page__favorites {
     width: 35%;   
+}
+
+.main-block {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 925px) {
+    .main-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main-page__favorites {
+        width: 99%;   
+        margin-bottom: 20px;
+    }
+
+    .main-page__movies {
+        width: 80%;
+    }
 }

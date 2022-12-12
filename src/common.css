@@ -7,3 +7,8 @@ input {
   font-family: "Roboto", "Helvetica", sans-serif;
   color: #000807;
 }
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
