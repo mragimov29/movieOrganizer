@@ -32,3 +32,19 @@
     transition: all 0.2s linear;
 }
 
+.favorites__list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.favorites__save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.fav_button {
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+}
