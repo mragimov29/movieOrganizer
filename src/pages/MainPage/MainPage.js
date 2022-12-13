@@ -14,13 +14,15 @@ export default function MainPage() {
           <div className="main-page__search-box">
             <SearchBox />
           </div>
-          <div className="main-page__movies">
-            <Movies />
+          <div className="main-block">
+            <div className="main-page__favorites">
+              <Favorites />
+            </div>
+            <div className="main-page__movies">
+              <Movies />
+            </div>
           </div>
         </section>
-        <aside className="main-page__favorites">
-          <Favorites />
-        </aside>
       </main>
     </div>
   );
